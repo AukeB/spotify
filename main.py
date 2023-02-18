@@ -78,7 +78,7 @@ def format_whatsapp_conversation(raw_text) -> pd.DataFrame():
 		'''
 		Sometimes the message part of a line in the text file is spread out over several lines. This
 		means that a list element does not always begin with a date, but with the second part of the previous message.
-		This causes a problem and this function resolves that.
+		This causes a problem and this function solves that.
 
 		Args:
 			text (str):					Text file.
@@ -206,10 +206,10 @@ def obtain_all_urls(df) -> list:
 		spotify_list (list):					The list containing all the urls.
 	'''
 
-	column = df['Message']	
+	column = df['Message']
 	spotify_list = []
 
-	for index, value in column.items():
+	for _, value in column.items():
 		elements = value.split(' ')
 		for j in elements:
 			if 'https://' in j:
@@ -495,8 +495,10 @@ def create_playlist(
 		# Obtain the newly created playlist id.
 		playlist_id = obtain_playlist_id(name=p.PLAYLIST_NAME)
 
+		print(tracks)
+
 		# Add tracks to playlist.
-		snapshot_id = add_items_to_playlist(tracks=tracks[0], playlist_id=playlist_id)
+		snapshot_id = add_items_to_playlist(tracks=tracks, playlist_id=playlist_id)
 	
 
 def main():
